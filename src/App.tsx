@@ -6,6 +6,8 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import Contact from './pages/Contact';
+import Sidebar from './Layout/sidebar';
 
 
 function App() {
@@ -15,19 +17,22 @@ function App() {
       element: (
         <div>
           <h1>Hello World</h1>
-          <Link to="about">About Us</Link>
+          <Link to="contact">Contact</Link>
         </div>
       ),
     },
     {
-      path: "about",
-      element: <div>About</div>,
+      path: "contact",
+      element: <Contact />,
     },
   ]);
   
   return (
     <div className="text-6xl">
+      <Sidebar>
+
         <RouterProvider router={router} />
+      </Sidebar>
     </div>
   );
 }
