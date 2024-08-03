@@ -1,40 +1,37 @@
-import React from 'react';
-import './App.css';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
-import Contact from './pages/Contact';
-import Sidebar from './Layout/sidebar';
-
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Contact from "./pages/Contact";
+import Sidebar from "./Layout/sidebar";
+import Charts from "./pages/Charts";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
-        <div>
-          <h1>Hello World</h1>
-          <Link to="contact">Contact</Link>
-        </div>
-      ),
     },
     {
       path: "contact",
-      element: <Contact />,
+      element: (
+        <Sidebar>
+          <Contact />
+        </Sidebar>
+      ),
+    },
+
+    {
+      path: "chartsandmaps",
+      element: (
+        <Sidebar>
+          <Charts />
+        </Sidebar>
+      ),
     },
   ]);
-  
-  return (
-    <div className="text-6xl">
-      <Sidebar>
 
-        <RouterProvider router={router} />
-      </Sidebar>
+  return (
+    <div className="w-full h-screen bg-gray-200">
+      <RouterProvider router={router} />
     </div>
   );
 }
-
 export default App;
