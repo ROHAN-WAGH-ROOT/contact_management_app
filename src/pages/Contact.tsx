@@ -97,8 +97,8 @@ export default function Contact() {
   };
 
   return (
-    <div>
-      <div className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 p-2 ">
+    <div className="w-[50vw] mt-2">
+      <div className="w-full bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 p-2 ">
         <div className="text-2xl font-bold mx-2 mb-4 mt-2">Contact</div>
         <div className="flex px-2">
           <div className="px-2 w-1/2">
@@ -176,55 +176,58 @@ export default function Contact() {
           </div>
         </div>
       </div>
-      <div className="w-full overflow-y-auto h-[48vh] p-2">
-        {records.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {records.map((record, index) => (
-              <div key={index} className="border rounded-lg p-4 shadow-md">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-lg font-bold">Record #{index + 1}</h2>
-                  <div className="flex space-x-2">
-                    <button
-                      onClick={() => handleViews(record)}
-                      className="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-700"
-                    >
-                      View
-                    </button>
-                    <button
-                      onClick={() => handleView(record, index)}
-                      className="px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-700"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleRemove(index)}
-                      className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-700"
-                    >
-                      Delete
-                    </button>
+      <div>
+        {records.length > 0 && (
+          <div className="w-full overflow-y-auto h-[48vh] p-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {records.map((record, index) => (
+                <div key={index} className="border rounded-lg p-4 shadow-md">
+                  <div className="flex justify-between items-center mb-2">
+                    <h2 className="text-lg font-bold">Record #{index + 1}</h2>
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => handleViews(record)}
+                        className="px-2 py-1 text-white bg-green-500 rounded hover:bg-green-700"
+                      >
+                        View
+                      </button>
+                      <button
+                        onClick={() => handleView(record, index)}
+                        className="px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-700"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleRemove(index)}
+                        className="px-2 py-1 text-white bg-red-500 rounded hover:bg-red-700"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <span className="font-semibold">First Name:</span>
+                    {record.firstName}
+                  </div>
+                  <div className="mb-2">
+                    <span className="font-semibold">Last Name:</span>
+                    {record.lastName}
+                  </div>
+                  <div>
+                    <span className="font-semibold">Status:</span>{" "}
+                    {record.status}
                   </div>
                 </div>
-                <div className="mb-2">
-                  <span className="font-semibold">First Name:</span>
-                  {record.firstName}
-                </div>
-                <div className="mb-2">
-                  <span className="font-semibold">Last Name:</span>
-                  {record.lastName}
-                </div>
-                <div>
-                  <span className="font-semibold">Status:</span> {record.status}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center justify-center flex m-auto p-5">
-            No Data Found
+              ))}
+            </div>
           </div>
         )}
       </div>
-
+      {records.length <= 0 && (
+        <div className="text-center justify-center flex m-auto p-5">
+          No Data Found
+        </div>
+      )}
       {modalVisible && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">

@@ -12,14 +12,14 @@ export default function Sidebar({ children }: React.PropsWithChildren) {
   return (
     <div className="h-svh overflow-hidden">
       <div className="bg-blue-300 align-middle text-center flex justify-center m-auto w-full font-serif py-2 font-bold">
-        {header == "/contact" ? "Contact Page" : "Charts and Maps"}
+        {header == "/chartsandmaps" ? "Charts and Maps" : "Contact Page"}
       </div>
       <div className="flex h-screen">
         <div className="h-[94%] bg-black text-white w-[20%]">
           <div className="w-full px-2 py-2 cursor-pointer">
             <div
               onClick={() => {
-                navigate("/contact");
+                navigate("/");
                 setHeader("/contact");
               }}
               className="px-5 py-3 w-full flex hover:bg-sky-200 hover:text-black rounded-md text-center"
@@ -39,7 +39,13 @@ export default function Sidebar({ children }: React.PropsWithChildren) {
             </div>
           </div>
         </div>
-        <div className="p-2 align-middle m-auto flex justify-center w-100">
+        <div
+          className={`${
+            header == "/contact"
+              ? "align-middle flex justify-center w-[100%]"
+              : "h-[90vh] align-middle flex justify-center w-[100vw] overflow-y-auto"
+          }`}
+        >
           <div>{children}</div>
         </div>
       </div>

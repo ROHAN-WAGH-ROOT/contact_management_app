@@ -1,5 +1,5 @@
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Contact from "./pages/Contact";
 import Sidebar from "./Layout/sidebar";
 import Charts from "./pages/Charts";
@@ -8,16 +8,12 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-    },
-    {
-      path: "contact",
       element: (
         <Sidebar>
           <Contact />
         </Sidebar>
       ),
     },
-
     {
       path: "chartsandmaps",
       element: (
@@ -31,6 +27,7 @@ function App() {
   return (
     <div className="w-full h-screen bg-gray-200">
       <RouterProvider router={router} />
+      <Outlet />
     </div>
   );
 }

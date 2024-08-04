@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Record {
   firstName: string;
@@ -15,13 +15,16 @@ const initialState: FormState = {
 };
 
 const formSlice = createSlice({
-  name: 'form',
+  name: "form",
   initialState,
   reducers: {
     addRecord(state, action: PayloadAction<Record>) {
       state.records.push(action.payload);
     },
-    updateRecord(state, action: PayloadAction<{ index: number; record: Partial<Record> }>) {
+    updateRecord(
+      state,
+      action: PayloadAction<{ index: number; record: Partial<Record> }>
+    ) {
       const { index, record } = action.payload;
       if (index >= 0 && index < state.records.length) {
         state.records[index] = { ...state.records[index], ...record };
