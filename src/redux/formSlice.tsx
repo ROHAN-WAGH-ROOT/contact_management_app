@@ -1,35 +1,40 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface FormState {
+interface Record {
   firstName: string;
   lastName: string;
   status: string;
 }
 
+interface FormState {
+  records: Record[];
+}
+
 const initialState: FormState = {
-  firstName: '',
-  lastName: '',
-  status: '',
+  records: [],
 };
 
 const formSlice = createSlice({
   name: 'form',
   initialState,
   reducers: {
-    setFirstName(state, action: PayloadAction<string>) {
-      state.firstName = action.payload;
+    addRecord(state, action: PayloadAction<Record>) {
+      state.records.push(action.payload);
     },
-    setLastName(state, action: PayloadAction<string>) {
-      state.lastName = action.payload;
+    updateRecord(state, action: PayloadAction<{ index: number; record: Partial<Record> }>) {
+      const { index, record } = action.payload;
+      if (index >= 0 && index < state.records.length) {
+        state.records[index] = { ...state.records[index], ...record };
+      }
     },
-    setStatus(state, action: PayloadAction<string>) {
-      state.status = action.payload;
-    },
-    updateForm(state, action: PayloadAction<Partial<FormState>>) {
-      Object.assign(state, action.payload);
+    removeRecord(state, action: PayloadAction<number>) {
+      const index = action.payload;
+      if (index >= 0 && index < state.records.length) {
+        state.records.splice(index, 1);
+      }
     },
   },
 });
 
-export const { setFirstName, setLastName, setStatus, updateForm } = formSlice.actions;
+export const { addRecord, updateRecord, removeRecord } = formSlice.actions;
 export default formSlice.reducer;

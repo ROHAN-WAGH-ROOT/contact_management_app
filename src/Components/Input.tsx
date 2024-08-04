@@ -5,8 +5,8 @@ interface Inputs {
   label: string;
   value: string;
   type: string;
-  handleForm: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className: string;
+  handleForm: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({
